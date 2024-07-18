@@ -8,32 +8,40 @@
 <div class="content">
     <h1 style="text-align: center">Task</h1>
 
-    <table>
-        <tr>
-            <th>
-                Task
-            </th>
-            <th>
-                Added
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-        {% for task in tasks %}
-        <tr>
+    {% if tasks|length < 1%}
+    <h4>No Task</h4>
+    {% else %}
 
-            <td>{{ task.content }}</td>
-            <td>{{ task.date_created}}</td>
-            <td>
-                <a href="">Delete</a>
-                <br>
-                <a href="">Update</a>
-            </td>
-        
-        </tr>
-        {% endfor %}
-    </table>
+
+
+        <table>
+            <tr>
+                <th>
+                    Task
+                </th>
+                <th>
+                    Added
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created}}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% endif %}
 
     <form action="/" method="POST">
 
